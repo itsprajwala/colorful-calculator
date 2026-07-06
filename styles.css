@@ -1,0 +1,265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Animated Background Symbols */
+.background-symbols {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.background-symbols::before {
+    content: '+ - × ÷ = √ π ∑ ∫ ∞ + - × ÷ = √ π ∑ ∫ ∞ + - × ÷ = √ π ∑ ∫ ∞ + - × ÷ = √ π ∑ ∫ ∞ + - × ÷ = √ π ∑ ∫ ∞ + - × ÷ = √ π ∑ ∫ ∞';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    font-size: 4rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.05);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    animation: float 20s infinite linear;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.background-symbols::after {
+    content: '% ! ( ) [ ] { } ≤ ≥ ≠ ≈ + % ! ( ) [ ] { } ≤ ≥ ≠ ≈ + % ! ( ) [ ] { } ≤ ≥ ≠ ≈ + % ! ( ) [ ] { } ≤ ≥ ≠ ≈';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.03);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    animation: float 25s infinite linear reverse;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+.container {
+    z-index: 10;
+    position: relative;
+}
+
+/* Calculator Styling */
+.calculator {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(102, 126, 234, 0.2);
+    max-width: 350px;
+    backdrop-filter: blur(10px);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.display {
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 3px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+}
+
+#display {
+    width: 100%;
+    background: #f0f0f0;
+    border: none;
+    padding: 20px;
+    font-size: 2rem;
+    text-align: right;
+    border-radius: 12px;
+    color: #333;
+    font-weight: 600;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#display:focus {
+    background: #fff;
+    box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    padding: 18px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Number Buttons */
+.btn-number {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.btn-number:hover {
+    background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+}
+
+/* Operator Buttons */
+.btn-operator {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.btn-operator:hover {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+}
+
+/* Clear Button */
+.btn-clear {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: #333;
+}
+
+.btn-clear:hover {
+    background: linear-gradient(135deg, #fee140 0%, #fa709a 100%);
+}
+
+/* Delete Button */
+.btn-delete {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #ee5a6f 0%, #ff6b6b 100%);
+}
+
+/* Decimal Button */
+.btn-decimal {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    color: #333;
+}
+
+.btn-decimal:hover {
+    background: linear-gradient(135deg, #fed6e3 0%, #a8edea 100%);
+}
+
+/* Equal Button */
+.btn-equal {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    grid-column: span 2;
+    font-size: 1.5rem;
+}
+
+.btn-equal:hover {
+    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+}
+
+/* Zero Button Spans 2 columns */
+.btn-zero {
+    grid-column: span 2;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .calculator {
+        padding: 20px;
+        max-width: 90vw;
+    }
+
+    #display {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+
+    .btn {
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+
+    .btn-equal {
+        font-size: 1.2rem;
+    }
+
+    .background-symbols::before {
+        font-size: 2.5rem;
+    }
+
+    .background-symbols::after {
+        font-size: 2rem;
+    }
+}
