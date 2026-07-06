@@ -1,44 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Colorful Calculator</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="calculator" role="application" aria-label="Colorful calculator">
-    <header class="screen" aria-live="polite">
-      <div id="history" class="history" aria-hidden="true"></div>
-      <div id="display" class="display">0</div>
-    </header>
-
-    <div class="buttons" role="group" aria-label="Calculator buttons">
-      <button class="btn func wide" data-action="clear" aria-label="clear">C</button>
-      <button class="btn func" data-action="back" aria-label="backspace">←</button>
-      <button class="btn op" data-value="/" aria-label="divide">÷</button>
-
-      <button class="btn num" data-value="7">7</button>
-      <button class="btn num" data-value="8">8</button>
-      <button class="btn num" data-value="9">9</button>
-      <button class="btn op" data-value="*" aria-label="multiply">×</button>
-
-      <button class="btn num" data-value="4">4</button>
-      <button class="btn num" data-value="5">5</button>
-      <button class="btn num" data-value="6">6</button>
-      <button class="btn op" data-value="-" aria-label="subtract">−</button>
-
-      <button class="btn num" data-value="1">1</button>
-      <button class="btn num" data-value="2">2</button>
-      <button class="btn num" data-value="3">3</button>
-      <button class="btn op" data-value="+" aria-label="add">+</button>
-
-      <button class="btn num wide" data-value="0">0</button>
-      <button class="btn num" data-value=".">.</button>
-      <button class="btn equals" data-action="equals" aria-label="equals">=</button>
+    <div class="background-symbols"></div>
+    
+    <div class="container">
+        <div class="calculator">
+            <div class="display">
+                <input type="text" id="display" readonly>
+            </div>
+            
+            <div class="buttons-grid">
+                <button class="btn btn-clear" onclick="clearDisplay()">C</button>
+                <button class="btn btn-delete" onclick="deleteLast()">DEL</button>
+                <button class="btn btn-operator" onclick="appendOperator('/')">/</button>
+                <button class="btn btn-operator" onclick="appendOperator('*')">*</button>
+                
+                <button class="btn btn-number" onclick="appendNumber('7')">7</button>
+                <button class="btn btn-number" onclick="appendNumber('8')">8</button>
+                <button class="btn btn-number" onclick="appendNumber('9')">9</button>
+                <button class="btn btn-operator" onclick="appendOperator('-')">-</button>
+                
+                <button class="btn btn-number" onclick="appendNumber('4')">4</button>
+                <button class="btn btn-number" onclick="appendNumber('5')">5</button>
+                <button class="btn btn-number" onclick="appendNumber('6')">6</button>
+                <button class="btn btn-operator" onclick="appendOperator('+')">+</button>
+                
+                <button class="btn btn-number" onclick="appendNumber('1')">1</button>
+                <button class="btn btn-number" onclick="appendNumber('2')">2</button>
+                <button class="btn btn-number" onclick="appendNumber('3')">3</button>
+                <button class="btn btn-decimal" onclick="appendDecimal()">.</button>
+                
+                <button class="btn btn-number btn-zero" onclick="appendNumber('0')">0</button>
+                <button class="btn btn-equal" onclick="calculate()">=</button>
+            </div>
+        </div>
     </div>
-  </main>
 
-  <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
